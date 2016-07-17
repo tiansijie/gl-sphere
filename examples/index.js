@@ -17,7 +17,7 @@ shader.attributes.aColor.location = 1;
 shader.attributes.aNormal.location = 2;
 gl.enable(gl.DEPTH_TEST);
 
-var shpere1 = createSphere(
+var sphere1 = createSphere(
   gl,
   {
     radius: 3,
@@ -29,8 +29,8 @@ var shpere1 = createSphere(
   }
 );
 
-var shperes = [];
-shperes.push(shpere1);
+var spheres = [];
+spheres.push(sphere1);
 
 var projectionMatrix = mat4.create();
 var normalMatrix = mat4.create();
@@ -50,21 +50,21 @@ function render() {
   shader.uniforms.uProjection = projectionMatrix
 
   // Draw the square
-  for(var i = 0; i < shperes.length; ++i) {
-    var shpere = shperes[i];
-    shader.uniforms.uModelView = shpere.matrix;
-    mat4.invert(normalMatrix, shpere.matrix);
+  for(var i = 0; i < spheres.length; ++i) {
+    var sphere = spheres[i];
+    shader.uniforms.uModelView = sphere.matrix;
+    mat4.invert(normalMatrix, sphere.matrix);
     mat4.transpose(normalMatrix, normalMatrix);
     shader.uniforms.uNormalMatrix = normalMatrix;
 
-    shpere.vertices.bind();
+    sphere.vertices.bind();
     shader.attributes.aPosition.pointer();
-    shpere.colors.bind();
+    sphere.colors.bind();
     shader.attributes.aColor.pointer();
-    shpere.normals.bind();
+    sphere.normals.bind();
     shader.attributes.aNormal.pointer();
-    shpere.indices.bind();
-    gl.drawElements(gl.TRIANGLES, shpere.length, gl.UNSIGNED_SHORT, 0);
+    sphere.indices.bind();
+    gl.drawElements(gl.TRIANGLES, sphere.length, gl.UNSIGNED_SHORT, 0);
   }
 }
 
