@@ -17,7 +17,7 @@ var sphere = createSphere(
     latDivision: 30,
     position: {x: 0.5, y: -1.0, z: -14.0},
     rotation: {x: 0, y: Math.PI / 3, z: Math.PI / 5},
-    color: {r: 0.8, g: 0.1, b: 0.2}
+    color: {r: 0.8, g: 0.1, b: 0.2, a: 1.0}
   }
 );
 

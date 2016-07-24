@@ -27,6 +27,7 @@ function createSphere(gl, sphere) {
   var index = 0;
   var verticesIndex = [];
 
+  var alpha = color.a && color.a >= 0 ? color.a : 1.0;
   for (var y = 0; y <= lat; ++y) {
     var verticesRow = [];
     var v = y / lat;
@@ -40,7 +41,7 @@ function createSphere(gl, sphere) {
       vec3.normalize(normal, [px, py, pz]);
       normals.push(normal[0], normal[1], normal[2]);
       vertices.push(px, py, pz);
-      colors.push(color.r, color.g, color.b, 1.0);
+      colors.push(color.r, color.g, color.b, alpha);
       uvs.push(u, 1-v);
       verticesRow.push(index);
       index ++;
